@@ -10,8 +10,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 interface ConnectionLoggerDataSource {
-    fun addLog(connected: Boolean)
-    fun getAllLogs(callback: (List<ConnectionLog>) -> Unit)
+    suspend fun addLog(connected: Boolean)
+    suspend fun getAllLogs(callback: (List<ConnectionLog>) -> Unit)
     fun removeLogs()
 }
 
@@ -25,15 +25,15 @@ class ConnectionLoggerLocalDataSource @Inject constructor(
         Handler(Looper.getMainLooper())
     }
 
-    override fun addLog(connected: Boolean) {
-        executorService.execute {
+    override suspend fun addLog(connected: Boolean) {
+//        executorService.execute {
             logDao.insertAll(
                 ConnectionLog(connected, System.currentTimeMillis())
             )
-        }
+//        }
     }
 
-    override fun getAllLogs(callback: (List<ConnectionLog>) -> Unit) {
+    override suspend fun getAllLogs(callback: (List<ConnectionLog>) -> Unit) {
         executorService.execute {
             val logs = logDao.getAll()
             mainThreadHandler.post { callback(logs) }

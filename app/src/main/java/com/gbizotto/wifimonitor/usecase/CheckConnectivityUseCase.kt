@@ -7,14 +7,14 @@ import com.gbizotto.wifimonitor.datasource.ConnectionLoggerDataSource
 import javax.inject.Inject
 
 interface CheckConnectivityUseCase {
-    operator fun invoke()
+    suspend operator fun invoke()
 }
 
 class CheckConnectivity @Inject constructor(
     private val connectivityManager: ConnectivityManager,
     private val connectionLoggerDataSource: ConnectionLoggerDataSource
 ) : CheckConnectivityUseCase {
-    override fun invoke() {
+    override suspend fun invoke() {
         Log.v("CheckConnectivity", "injetou!")
 
         connectivityManager.registerDefaultNetworkCallback(object :
