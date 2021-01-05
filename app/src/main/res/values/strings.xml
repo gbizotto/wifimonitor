@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Wifi Monitor</string>
+
+    <string name="refresh_logs_button">Refresh log</string>
+
+    <string name="status_connected">Connected</string>
+    <string name="status_disconnected">Disconnected</string>
+</resources>
