@@ -8,14 +8,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 interface CheckConnectivityUseCase {
-    suspend operator fun invoke()
+    operator fun invoke()
 }
 
 class CheckConnectivity @Inject constructor(
     private val connectivityManager: ConnectivityManager,
     private val connectionLoggerDataSource: ConnectionLoggerDataSource
 ) : CheckConnectivityUseCase {
-    override suspend fun invoke() {
+    override fun invoke() {
         connectivityManager.registerDefaultNetworkCallback(object :
             ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: Network) {

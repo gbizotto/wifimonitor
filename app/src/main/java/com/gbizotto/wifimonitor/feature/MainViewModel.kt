@@ -16,15 +16,25 @@ class MainViewModel @ViewModelInject constructor(
 
     val logs = MutableLiveData<List<ConnectionLog>>()
 
-    fun onStart() {
-        viewModelScope.launch {
-            checkConnectivity()
+    fun onAction(action: Action) {
+        when (action) {
+            Action.START -> onStart()
+            Action.REFRESH -> refresh()
         }
     }
 
-    fun refresh() {
+    private fun onStart() {
+            checkConnectivity()
+    }
+
+    private fun refresh() {
         viewModelScope.launch {
             logs.postValue(getAllLogs())
         }
     }
+}
+
+enum class Action {
+    START,
+    REFRESH
 }
