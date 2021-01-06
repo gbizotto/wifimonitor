@@ -8,8 +8,8 @@ import androidx.room.Query
 interface ConnectionLogDao {
 
     @Query("SELECT * FROM logs ORDER BY id DESC")
-    fun getAll(): List<ConnectionLog>
+    suspend fun getAll(): List<ConnectionLog>
 
     @Insert
-    fun insertAll(vararg logs: ConnectionLog)
+    suspend fun insertAll(vararg logs: ConnectionLog)
 }

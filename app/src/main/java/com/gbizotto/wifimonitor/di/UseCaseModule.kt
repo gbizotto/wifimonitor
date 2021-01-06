@@ -2,6 +2,8 @@ package com.gbizotto.wifimonitor.di
 
 import com.gbizotto.wifimonitor.usecase.CheckConnectivity
 import com.gbizotto.wifimonitor.usecase.CheckConnectivityUseCase
+import com.gbizotto.wifimonitor.usecase.GetAllLogs
+import com.gbizotto.wifimonitor.usecase.GetAllLogsUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,5 +16,9 @@ abstract class UseCaseModule {
 
     @Singleton
     @Binds
-    abstract fun bind(useCase: CheckConnectivity) : CheckConnectivityUseCase
+    abstract fun bindCheckConnectivityUseCase(useCase: CheckConnectivity) : CheckConnectivityUseCase
+
+    @Singleton
+    @Binds
+    abstract fun bindGetAllLogsUseCase(useCase: GetAllLogs) : GetAllLogsUseCase
 }
