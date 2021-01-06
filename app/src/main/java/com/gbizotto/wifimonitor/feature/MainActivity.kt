@@ -21,11 +21,11 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.viewModel = viewModel
 
-        viewModel.onStart()
+        viewModel.onAction(Action.START)
         observeViewModel()
 
         binding.btnRefresh.setOnClickListener {
-            viewModel.refresh()
+            viewModel.onAction(Action.REFRESH)
         }
     }
 
